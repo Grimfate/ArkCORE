@@ -883,9 +883,10 @@ int32 AuraEffect::CalculateAmount (Unit *caster)
             switch (GetId())
             {
             case 20043:          // Aspect of the Wild
-            case 8185:          // Elemental Resistance
+            case 8185:           // Elemental Resistance
             case 19891:          // Resistance Aura
             case 79106:          // Shadow Protection
+            case 79107:          // Shadow Protection 2
                 amount = resist;
                 break;
             case 79060:          // Mark of the Wild
