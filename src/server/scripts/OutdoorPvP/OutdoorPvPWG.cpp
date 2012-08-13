@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2008 - 2011 Trinity <http://www.trinitycore.org/>
+ * Copyright (C) 2008 - 2012 Trinity <http://www.trinitycore.org/>
  *
- * Copyright (C) 2011 Patch supported by ChaosUA & TCRU community http://trinity-core.ru/
+ * Copyright (C) 2012 Patch supported by ChaosUA & TCRU community http://trinity-core.ru/
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -10,12 +10,12 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
 #include "OutdoorPvPWG.h"
@@ -34,8 +34,8 @@ uint32 entry;
 uint32 guide_entry;
 uint32 guide_entry_fortress_horde;
 uint32 guide_entry_fortress_alliance;
-/*
-char const *fmtstring(char const *format, ...)
+
+char const *ffmtstring(char const *format, ...)
 {
     va_list        argptr;
     #define    MAX_FMT_STRING    32000
@@ -66,7 +66,7 @@ char const *fmtstring(char const *format, ...)
 
     return buf;
 }
-*/
+
 OutdoorPvPWG::OutdoorPvPWG()
 {
     m_TypeId = OUTDOOR_PVP_WG;
@@ -399,14 +399,14 @@ bool OutdoorPvPWG::SetupOutdoorPvP()
     }
 
     // Load Graveyard
-    GraveYardMap::const_iterator graveLow  = sObjectMgr->mGraveYardMap.lower_bound(ZONE_WINTERGRASP);
-    GraveYardMap::const_iterator graveUp   = sObjectMgr->mGraveYardMap.upper_bound(ZONE_WINTERGRASP);
+    GraveYardMap::const_iterator graveLow = sObjectMgr->mGraveYardMap.lower_bound(ZONE_WINTERGRASP);
+    GraveYardMap::const_iterator graveUp = sObjectMgr->mGraveYardMap.upper_bound(ZONE_WINTERGRASP);
     for (AreaPOIList::iterator itr = areaPOIs.begin(); itr != areaPOIs.end();)
     {
         if ((*itr)->icon[1] == 8)
         {
             // find or create grave yard
-            const WorldSafeLocsEntry *loc = sObjectMgr->GetClosestGraveYard((*itr)->x, (*itr)->y, 1.0f, (*itr)->mapId, 0); // Fix Z, no longer in DBC
+            const WorldSafeLocsEntry *loc = sObjectMgr->GetClosestGraveYard((*itr)->x, (*itr)->y, 1.0f, (*itr)->mapId, 0);
             if (!loc)
             {
                 ++itr;
@@ -537,7 +537,7 @@ void OutdoorPvPWG::ProcessEvent(WorldObject *objin, uint32 eventId)
             {
                 case BUILDING_WORKSHOP:
                 {
-                    msgStr = fmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_WORKSHOP_DAMAGED), msgStr.c_str(), sObjectMgr->GetArkCoreStringForDBCLocale(getDefenderTeam() == TEAM_ALLIANCE ? LANG_BG_AB_ALLY : LANG_BG_AB_HORDE));
+                    msgStr = ffmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_WORKSHOP_DAMAGED), msgStr.c_str(), sObjectMgr->GetArkCoreStringForDBCLocale(getDefenderTeam() == TEAM_ALLIANCE ? LANG_BG_AB_ALLY : LANG_BG_AB_HORDE));
                     sWorld->SendZoneText(ZONE_WINTERGRASP, msgStr.c_str());
                 }
                     break;
@@ -565,7 +565,7 @@ void OutdoorPvPWG::ProcessEvent(WorldObject *objin, uint32 eventId)
                 case BUILDING_TOWER:
                 {
                     ++m_towerDamagedCount[state->GetTeam()];
-                    msgStr = fmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_TOWER_DAMAGED), msgStr.c_str());
+                    msgStr = ffmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_TOWER_DAMAGED), msgStr.c_str());
                     sWorld->SendZoneText(ZONE_WINTERGRASP, msgStr.c_str());
                     for (PlayerSet::iterator itr = m_players[getDefenderTeam()].begin(); itr != m_players[getDefenderTeam()].end(); ++itr)
                     {
@@ -596,7 +596,7 @@ void OutdoorPvPWG::ProcessEvent(WorldObject *objin, uint32 eventId)
                 case BUILDING_WORKSHOP:
                 {
                     ModifyWorkshopCount(state->GetTeam(), false);
-                    msgStr = fmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_WORKSHOP_DESTROYED), msgStr.c_str(), sObjectMgr->GetArkCoreStringForDBCLocale(getDefenderTeam() == TEAM_ALLIANCE ? LANG_BG_AB_ALLY : LANG_BG_AB_HORDE));
+                    msgStr = ffmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_WORKSHOP_DESTROYED), msgStr.c_str(), sObjectMgr->GetArkCoreStringForDBCLocale(getDefenderTeam() == TEAM_ALLIANCE ? LANG_BG_AB_ALLY : LANG_BG_AB_HORDE));
                     sWorld->SendZoneText(ZONE_WINTERGRASP, msgStr.c_str());
                 }
                     break;
@@ -649,7 +649,7 @@ void OutdoorPvPWG::ProcessEvent(WorldObject *objin, uint32 eventId)
                                 m_timer = m_timer - 600000; // - 10 mins
                         }
                     }
-                    msgStr = fmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_TOWER_DESTROYED), msgStr.c_str());
+                    msgStr = ffmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_TOWER_DESTROYED), msgStr.c_str());
                     sWorld->SendZoneText(ZONE_WINTERGRASP, msgStr.c_str());
                     for (PlayerSet::iterator itr = m_players[getDefenderTeam()].begin(); itr != m_players[getDefenderTeam()].end(); ++itr)
                     {
@@ -973,7 +973,7 @@ void OutdoorPvPWG::RebuildAllBuildings()
         if (itr->second->building && itr->second->building->GetGoType() == GAMEOBJECT_TYPE_DESTRUCTIBLE_BUILDING)
         {
             UpdateGameObjectInfo(itr->second->building);
-            //itr->second->building->Rebuild();
+            itr->second->building->Refresh();
             itr->second->building->SetDestructibleState(GO_DESTRUCTIBLE_REBUILDING, NULL, true);
             itr->second->health = itr->second->building->GetGOValue()->Building.Health;
             itr->second->damageState = DAMAGE_INTACT;
@@ -1057,6 +1057,21 @@ bool OutdoorPvPWG::UpdateCreatureInfo(Creature *creature)
             {
                 creature->SetVisible(false);
                 creature->setFaction(35);
+
+                // Prevent from hiding
+                switch (entry)
+                {
+                    case 30560: // The RP-GG
+                    case 27852: // This creature is neded for spell_target in workshops while building siege machines
+                    case 27869: // Wintergrasp Detection Unit
+                    case 23472: // World Trigger (Large AOI, Not Immune PC/NPC)
+                    {
+                        creature->SetPhaseMask(1, true);
+                        creature->RestoreFaction();
+                        creature->SetVisible(true);
+                    }
+                    break;
+                }
             } else {
                 creature->RestoreFaction();
                 creature->SetVisible(true);
@@ -1104,7 +1119,7 @@ bool OutdoorPvPWG::UpdateCreatureInfo(Creature *creature)
         case CREATURE_GUARD:
         case CREATURE_SPECIAL:
         {
-            //TDB users comment this block if your guards doesn't spawn by pairs A+H at fortress
+            //TDB users comment this block if your guards doesn't spawned by pairs A+H at fortress
             if (creature->GetAreaId()==4575)
             {
                 switch (entry)
@@ -1113,18 +1128,30 @@ bool OutdoorPvPWG::UpdateCreatureInfo(Creature *creature)
                     case 32308://Alliance guard
                     {
                         if (getDefenderTeam() == TEAM_ALLIANCE)
+                        {
                             creature->SetPhaseMask(1, true);
+                            creature->SetVisible(true);
+                        }
                         else
+                        {
                             creature->SetPhaseMask(2, true);
+                            creature->SetVisible(false);
+                        }
                         break;
                     }
                     case 30739://Horde champion
                     case 32307://Horde guard
                     {
                         if (getDefenderTeam() == TEAM_ALLIANCE)
+                        {
                             creature->SetPhaseMask(2, true);
+                            creature->SetVisible(false);
+                        }
                         else
+                        {
                             creature->SetPhaseMask(1, true);
+                            creature->SetVisible(true);
+                        }
                         break;
                     }
                 }
@@ -1166,7 +1193,9 @@ bool OutdoorPvPWG::UpdateQuestGiverPosition(uint32 guid, Creature *creature)
         {
             creature->CombatStop(true);
             creature->getHostileRefManager().deleteReferences();
+            creature->AI()->EnterEvadeMode();
         }
+
         creature->SetHomePosition(pos);
         if (creature->GetEntry() != 30400 || creature->GetEntry() != 30499)
             creature->SetReactState(REACT_AGGRESSIVE);
@@ -1600,7 +1629,7 @@ bool OutdoorPvPWG::Update(uint32 diff)
         if (isWarTime())
         {
             if (m_timer != 1) // 1 = forceStopBattle
-                sWorld->SendZoneText(ZONE_WINTERGRASP, fmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(entry), sObjectMgr->GetArkCoreStringForDBCLocale(getDefenderTeam() == TEAM_ALLIANCE ? LANG_BG_AB_ALLY : LANG_BG_AB_HORDE)));
+                sWorld->SendZoneText(ZONE_WINTERGRASP, ffmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(entry), sObjectMgr->GetArkCoreStringForDBCLocale(getDefenderTeam() == TEAM_ALLIANCE ? LANG_BG_AB_ALLY : LANG_BG_AB_HORDE)));
             EndBattle();
         } else {
             if (m_timer != 1)
@@ -1639,6 +1668,7 @@ void OutdoorPvPWG::forceStartBattle()
 
 void OutdoorPvPWG::forceStopBattle()
 {// Uptime will do all the work.
+
     if (!isWarTime())
         m_wartime = true;
     if (m_timer != 1)
@@ -1656,7 +1686,7 @@ void OutdoorPvPWG::forceChangeTeam()
     m_changeAlly = true;
     m_changeHorde = true;
 
-    sWorld->SendZoneText(ZONE_WINTERGRASP, fmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_SWITCH_FACTION), sObjectMgr->GetArkCoreStringForDBCLocale(getAttackerTeam() == TEAM_ALLIANCE ? LANG_BG_AB_ALLY : LANG_BG_AB_HORDE)));
+    sWorld->SendZoneText(ZONE_WINTERGRASP, ffmtstring(sObjectMgr->GetArkCoreStringForDBCLocale(LANG_BG_WG_SWITCH_FACTION), sObjectMgr->GetArkCoreStringForDBCLocale(getAttackerTeam() == TEAM_ALLIANCE ? LANG_BG_AB_ALLY : LANG_BG_AB_HORDE)));
     if (isWarTime())
         forceStartBattle();
     else

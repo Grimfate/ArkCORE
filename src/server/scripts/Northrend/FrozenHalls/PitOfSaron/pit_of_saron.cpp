@@ -81,7 +81,7 @@ public:
 
                 while (uint32 eventId = _events.ExecuteEvent())
             {
-                switch(eventId)
+                switch (eventId)
                 {
                     case EVENT_FIREBALL:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0))
@@ -196,7 +196,7 @@ public:
 
                 while (uint32 eventId = _events.ExecuteEvent())
             {
-                switch(eventId)
+                switch (eventId)
                 {
                     case EVENT_BLINDING_DIRT:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 10.0f, true))
@@ -277,7 +277,7 @@ public:
         CreatureAI* GetAI(Creature* creature) const
         {
             return new mob_geist_ambusherAI(creature);
-	}
+    }
 };
 
 class spell_trash_mob_glacial_strike : public SpellScriptLoader

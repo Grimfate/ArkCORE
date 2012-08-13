@@ -63,7 +63,7 @@ static Position SpawnLoc[]=
     {1669.98f, 753.686f, 143.074f, 4.95674f},
     {1680.67f, 737.104f, 143.083f, 2.53073f},
     {1680.63f, 750.682f, 143.074f, 3.87463f},
-    {1663.1f,  743.665f, 143.078f, 6.19592f},
+    {1663.1f, 743.665f, 143.078f, 6.19592f},
     {1670.39f, 733.493f, 143.073f, 1.27409f}
 };
 
@@ -81,7 +81,7 @@ class boss_drakkari_colossus : public CreatureScript
                 // 100% too much?
                 SpellEntry* spell = (SpellEntry*)sSpellStore.LookupEntry(SPELL_MORTAL_STRIKE);
               //TODO: Fix spell proc
-			  // if (spell)
+              // if (spell)
               //      spell->ProcChance = 50;
             }
 

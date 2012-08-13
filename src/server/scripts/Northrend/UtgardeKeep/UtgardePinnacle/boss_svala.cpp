@@ -25,7 +25,7 @@
 enum Spells
 {
     SPELL_CALL_FLAMES                             = 48258,
-    SPELL_RITUAL_OF_THE_SWORD                     = 48276, //Effect #1 Teleport,  Effect #2 Dummy
+    SPELL_RITUAL_OF_THE_SWORD                     = 48276, //Effect #1 Teleport, Effect #2 Dummy
     SPELL_RITUAL_OF_THE_SWORD_DISARM         = 54159,
     SPELL_SINISTER_STRIKE                    = 15667,
     H_SPELL_SINISTER_STRIKE                  = 59409,
@@ -282,7 +282,7 @@ public:
 
         void Reset()
         {
-    	    if (IsHeroic())
+            if (IsHeroic())
             DoCast(me, SPELL_SHADOWS_IN_THE_DARK);
         }
 

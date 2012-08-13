@@ -22,7 +22,14 @@
 #include "vortex_pinnacle.h"
 #include "ScriptPCH.h"
 
-enum eSpells
+enum Texts
+{
+    SAY_AGGRO                   = 0,
+    SAY_LIGHTNING               = 1,
+    SAY_DEATH                   = 2,
+};
+
+enum Spells
 {
     SPELL_CHAIN_LIGHTNING_N       = 87622,
     SPELL_CHAIN_LIGHTNING_H       = 93993,
@@ -52,10 +59,11 @@ public:
         void Reset()
         {
             ChainLightningTimer = 15000;
-            
+
             if (instance)
             {
                 instance->SetData(DATA_ASAAD, NOT_STARTED);
+                instance->SendEncounterUnit(ENCOUNTER_FRAME_REMOVE, me);
             }
         }
 
@@ -64,13 +72,17 @@ public:
             if (instance)
             {
                 instance->SetData(DATA_ASAAD, IN_PROGRESS);
+                instance->SendEncounterUnit(ENCOUNTER_FRAME_ADD, me);
             }
         }
 
         void JustDied(Unit* /*Killer*/)
         {
             if (instance)
+            {
                 instance->SetData(DATA_ASAAD, DONE);
+                instance->SendEncounterUnit(ENCOUNTER_FRAME_REMOVE, me);
+            }
 
             Map::PlayerList const &PlList = me->GetMap()->GetPlayers();
 
@@ -92,7 +104,7 @@ public:
                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
                     me->CastSpell(target, DUNGEON_MODE(SPELL_CHAIN_LIGHTNING_N, SPELL_CHAIN_LIGHTNING_H), true);
 
-                ChainLightningTimer = urand(12*IN_MILLISECONDS,17*IN_MILLISECONDS);
+                ChainLightningTimer = urand(12*IN_MILLISECONDS, 17*IN_MILLISECONDS);
             } else ChainLightningTimer -= diff;
 
             DoMeleeAttackIfReady();

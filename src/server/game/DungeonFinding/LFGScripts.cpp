@@ -35,9 +35,12 @@
 #include "LFGScripts.h"
 #include "LFGMgr.h"
 
-LFGScripts::LFGScripts(): GroupScript("LFGScripts"), PlayerScript("LFGScripts") {}
+LFGScripts::LFGScripts () :
+        GroupScript("LFGScripts"), PlayerScript("LFGScripts")
+{
+}
 
-void LFGScripts::OnAddMember(Group* group, uint64 guid)
+void LFGScripts::OnAddMember (Group* group, uint64 guid)
 {
     uint64 gguid = group->GetGUID();
     if (!gguid)
@@ -59,11 +62,11 @@ void LFGScripts::OnAddMember(Group* group, uint64 guid)
         sLFGMgr->Leave(NULL, group);
 
     if (sLFGMgr->GetState(guid) == LFG_STATE_QUEUED)
-        if (Player *plr = sObjectMgr->GetPlayer(guid))
+        if (Player * plr = sObjectMgr->GetPlayer(guid))
             sLFGMgr->Leave(plr);
 }
 
-void LFGScripts::OnRemoveMember(Group* group, uint64 guid, RemoveMethod& method, uint64 kicker, const char* reason)
+void LFGScripts::OnRemoveMember (Group* group, uint64 guid, RemoveMethod& method, uint64 kicker, const char* reason)
 {
     uint64 gguid = group->GetGUID();
     if (!gguid || method == GROUP_REMOVEMETHOD_DEFAULT)
@@ -79,7 +82,7 @@ void LFGScripts::OnRemoveMember(Group* group, uint64 guid, RemoveMethod& method,
     if (!group->isLFGGroup())
         return;
 
-    if (method == GROUP_REMOVEMETHOD_KICK)                 // Player have been kicked
+    if (method == GROUP_REMOVEMETHOD_KICK)          // Player have been kicked
     {
         // TODO - Update internal kick cooldown of kicker
         std::string str_reason = "";
@@ -90,26 +93,29 @@ void LFGScripts::OnRemoveMember(Group* group, uint64 guid, RemoveMethod& method,
     }
 
     sLFGMgr->ClearState(guid);
-    if (Player *plr = sObjectMgr->GetPlayer(guid))
+    if (Player * plr = sObjectMgr->GetPlayer(guid))
     {
+        // Add deserter flag
+        if (sLFGMgr->GetState(guid) != LFG_STATE_FINISHED_DUNGEON && method == GROUP_REMOVEMETHOD_LEAVE && plr)
+            plr->CastSpell(plr, LFG_SPELL_DUNGEON_DESERTER, true);
+        if (sLFGMgr->GetState(guid) == LFG_TYPE_DUNGEON && method == GROUP_REMOVEMETHOD_LEAVE && plr)
+            plr->RemoveAura(LFG_SPELL_LUCK_OF_THE_DRAW);// Remove Luck of the Draw aura.
         /*
-        if (method == GROUP_REMOVEMETHOD_LEAVE)
-            // Add deserter flag
-        else if (group->isLfgKickActive())
-            // Update internal kick cooldown of kicked
-        */
+         else if (group->isLfgKickActive())
+         // Update internal kick cooldown of kicked
+         */
 
         LfgUpdateData updateData = LfgUpdateData(LFG_UPDATETYPE_LEADER);
         plr->GetSession()->SendLfgUpdateParty(updateData);
-        if (plr->GetMap()->IsDungeon())                    // Teleport player out the dungeon
+        if (plr->GetMap()->IsDungeon())          // Teleport player out the dungeon
             sLFGMgr->TeleportPlayer(plr, true);
     }
 
-    if (sLFGMgr->GetState(gguid) != LFG_STATE_FINISHED_DUNGEON)// Need more players to finish the dungeon
+    if (sLFGMgr->GetState(gguid) != LFG_STATE_FINISHED_DUNGEON)          // Need more players to finish the dungeon
         sLFGMgr->OfferContinue(group);
 }
 
-void LFGScripts::OnDisband(Group* group)
+void LFGScripts::OnDisband (Group* group)
 {
     uint64 gguid = group->GetGUID();
     sLog->outDebug(LOG_FILTER_LFG, "LFGScripts::OnDisband [" UI64FMTD "]", gguid);
@@ -117,7 +123,7 @@ void LFGScripts::OnDisband(Group* group)
     sLFGMgr->RemoveGroupData(gguid);
 }
 
-void LFGScripts::OnChangeLeader(Group* group, uint64 newLeaderGuid, uint64 oldLeaderGuid)
+void LFGScripts::OnChangeLeader (Group* group, uint64 newLeaderGuid, uint64 oldLeaderGuid)
 {
     uint64 gguid = group->GetGUID();
     if (!gguid)
@@ -138,7 +144,7 @@ void LFGScripts::OnChangeLeader(Group* group, uint64 newLeaderGuid, uint64 oldLe
     }
 }
 
-void LFGScripts::OnInviteMember(Group* group, uint64 guid)
+void LFGScripts::OnInviteMember (Group* group, uint64 guid)
 {
     uint64 gguid = group->GetGUID();
     if (!gguid)
@@ -148,12 +154,12 @@ void LFGScripts::OnInviteMember(Group* group, uint64 guid)
     sLFGMgr->Leave(NULL, group);
 }
 
-void LFGScripts::OnLevelChanged(Player* player, uint8 /*newLevel*/)
+void LFGScripts::OnLevelChanged (Player* player, uint8 /*newLevel*/)
 {
     sLFGMgr->InitializeLockedDungeons(player);
 }
 
-void LFGScripts::OnLogout(Player* player)
+void LFGScripts::OnLogout (Player* player)
 {
     sLFGMgr->Leave(player);
     LfgUpdateData updateData = LfgUpdateData(LFG_UPDATETYPE_REMOVED_FROM_QUEUE);
@@ -165,13 +171,13 @@ void LFGScripts::OnLogout(Player* player)
     sLFGMgr->RemovePlayerData(guid);
 }
 
-void LFGScripts::OnLogin(Player* player)
+void LFGScripts::OnLogin (Player* player)
 {
     sLFGMgr->InitializeLockedDungeons(player);
     // TODO - Restore LfgPlayerData and send proper status to player if it was in a group
 }
 
-void LFGScripts::OnBindToInstance(Player* player, Difficulty difficulty, uint32 mapId, bool permanent)
+void LFGScripts::OnBindToInstance (Player* player, Difficulty difficulty, uint32 mapId, bool permanent)
 {
     MapEntry const* mapEntry = sMapStore.LookupEntry(mapId);
     if (mapEntry->IsDungeon() && difficulty > DUNGEON_DIFFICULTY_NORMAL)

@@ -206,7 +206,7 @@ public:
 
             if (uiCrystalfireBreathTimer <= diff)
             {
-            DoCast(me->getVictim(), DUNGEON_MODE(SPELL_CRYSTALFIRE_BREATH,H_SPELL_CRYSTALFIRE_BREATH));
+            DoCast(me->getVictim(), DUNGEON_MODE(SPELL_CRYSTALFIRE_BREATH, H_SPELL_CRYSTALFIRE_BREATH));
                 uiCrystalfireBreathTimer = 14*IN_MILLISECONDS;
             } else uiCrystalfireBreathTimer -= diff;
 
@@ -251,7 +251,7 @@ public:
         if (pKeristrasza && pKeristrasza->isAlive())
         {
             // maybe these are hacks :(
-            pGO->SetFlag(GAMEOBJECT_FLAGS, GO_FLAG_UNK1);
+            pGO->SetFlag(GAMEOBJECT_FLAGS, GO_FLAG_NOT_SELECTABLE);
             pGO->SetGoState(GO_STATE_ACTIVE);
 
             CAST_AI(boss_keristrasza::boss_keristraszaAI, pKeristrasza->AI())->CheckContainmentSpheres(true);

@@ -22,7 +22,12 @@
 #include "vortex_pinnacle.h"
 #include "ScriptPCH.h"
 
-enum eSpells
+enum Texts
+{
+    SAY_AGGRO                   = 0,   //todo: find texts + sound id
+};
+
+enum Spells
 {
     SPELL_LIGHTNING_BOLT_NORMAL = 86331,
     SPELL_LIGHTNING_BOLT_HEROIC = 93990,
@@ -52,10 +57,11 @@ public:
         void Reset()
         {
             LightningBoltTimer = 7000;
-            
+
             if (instance)
             {
                 instance->SetData(DATA_GRAND_VIZIER_ERTAN, NOT_STARTED);
+                instance->SendEncounterUnit(ENCOUNTER_FRAME_REMOVE, me);
             }
         }
 
@@ -63,17 +69,22 @@ public:
         {
             if (instance)
             {
+                Talk(SAY_AGGRO);    // lets use creature texts for that
                 instance->SetData(DATA_GRAND_VIZIER_ERTAN, IN_PROGRESS);
+                instance->SendEncounterUnit(ENCOUNTER_FRAME_ADD, me);
             }
         }
 
         void JustDied(Unit* /*Killer*/)
         {
             if (instance)
+            {
                 instance->SetData(DATA_GRAND_VIZIER_ERTAN, DONE);
+                instance->SendEncounterUnit(ENCOUNTER_FRAME_REMOVE, me);
+            }
 
             Creature * Slipstream = me->SummonCreature(NPC_SLIPSTREAM, -775.51f, -70.93f, 640.31f, 1.0f, TEMPSUMMON_CORPSE_DESPAWN, 0);
-            Slipstream->SetUInt32Value(UNIT_NPC_FLAGS,UNIT_NPC_FLAG_GOSSIP);
+            Slipstream->SetUInt32Value(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_GOSSIP);
 
             Map::PlayerList const &PlList = me->GetMap()->GetPlayers();
 
@@ -95,7 +106,7 @@ public:
                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
                     me->CastSpell(target, DUNGEON_MODE(SPELL_LIGHTNING_BOLT_NORMAL, SPELL_LIGHTNING_BOLT_HEROIC), true);
 
-                LightningBoltTimer = urand(5*IN_MILLISECONDS,7*IN_MILLISECONDS);
+                LightningBoltTimer = urand(5*IN_MILLISECONDS, 7*IN_MILLISECONDS);
             } else LightningBoltTimer -= diff;
 
             DoMeleeAttackIfReady();

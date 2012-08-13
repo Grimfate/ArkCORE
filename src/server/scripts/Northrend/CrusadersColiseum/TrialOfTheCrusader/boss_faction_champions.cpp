@@ -497,7 +497,7 @@ public:
             m_uiBarkskinTimer = IN_MILLISECONDS;
             m_uiCommonTimer = IN_MILLISECONDS;
             SetEquipmentSlots(false, 51799, EQUIP_NO_CHANGE, EQUIP_NO_CHANGE);
-	        trinket_timer = urand(5000, 20000);
+            trinket_timer = urand(5000, 20000);
         }
 
         void UpdateAI(const uint32 uiDiff)
@@ -505,20 +505,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-	                {
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+                    {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiNatureGraspTimer <= uiDiff)
             {
@@ -542,7 +542,7 @@ public:
             if (m_uiCommonTimer <= uiDiff)
             {
                 Unit* phTarget = urand(0, 1) ? me : DoSelectLowestHpFriendly(40.0f);
-                if(!phTarget)
+                if (!phTarget)
                     phTarget = me;
 
                 switch (urand(0, 4))
@@ -632,20 +632,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiHeroismOrBloodlustTimer <= uiDiff)
             {
@@ -653,14 +653,14 @@ public:
                 {
                     if (!me->HasAura(AURA_EXHAUSTION))
                         DoCastAOE(SPELL_HEROISM);
-                    if(!me->HasAura(AURA_EXHAUSTION))
+                    if (!me->HasAura(AURA_EXHAUSTION))
                         DoCastAOE(AURA_EXHAUSTION);
                 }
                 else
                 {
                     if (!me->HasAura(AURA_SATED))
                         DoCastAOE(SPELL_BLOODLUST);
-                    if(!me->HasAura(AURA_SATED))
+                    if (!me->HasAura(AURA_SATED))
                         DoCastAOE(AURA_SATED);
                 }
                 m_uiHeroismOrBloodlustTimer = 300*IN_MILLISECONDS;
@@ -676,7 +676,7 @@ public:
             if (m_uiCommonTimer <= uiDiff)
             {
                 Unit* phTarget = urand(0, 1) ? me : DoSelectLowestHpFriendly(40.0f);
-                if(!phTarget)
+                if (!phTarget)
                     phTarget = me;
 
                 switch (urand(0, 5))
@@ -770,20 +770,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiBubbleTimer <= uiDiff)
             {
@@ -838,7 +838,7 @@ public:
             if (m_uiCommonTimer <= uiDiff)
             {
                 Unit* phTarget = urand(0, 1) ? me : DoSelectLowestHpFriendly(40.0f);
-                if(!phTarget)
+                if (!phTarget)
                     phTarget = me;
 
                 switch (urand(0, 4))
@@ -918,20 +918,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiPsychicScreamTimer <= uiDiff)
             {
@@ -943,7 +943,7 @@ public:
             if (m_uiCommonTimer <= uiDiff)
             {
                 Unit* phTarget = urand(0, 1) ? me : DoSelectLowestHpFriendly(40.0f);
-                if(!phTarget)
+                if (!phTarget)
                     phTarget = me;
 
                 switch (urand(0, 5))
@@ -1048,20 +1048,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiPsychicScreamTimer <= uiDiff)
             {
@@ -1094,7 +1094,7 @@ public:
             if (m_uiCommonTimer <= uiDiff)
             {
                 Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0);
-                if(!target)
+                if (!target)
                     return;
                 switch (urand(0, 4))
                 {
@@ -1189,9 +1189,9 @@ public:
             m_uiSummonPetTimer = urand(15*IN_MILLISECONDS, 30*IN_MILLISECONDS);
             //DoCast(SPELL_SUMMON_FELHUNTER);
             trinket_timer = urand(5000, 20000);
-            if(Creature * pPet = me->FindNearestCreature(35465, 200.0f))
+            if (Creature * pPet = me->FindNearestCreature(35465, 200.0f))
                 pPet->DespawnOrUnsummon();
-            if(Creature * pPet = me->SummonCreature(35465, me->GetPositionX() + 3.0f, me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN, 1000))
+            if (Creature * pPet = me->SummonCreature(35465, me->GetPositionX() + 3.0f, me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN, 1000))
                 me->SetMinionGUID(pPet->GetGUID());
         }
 
@@ -1200,20 +1200,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiFearTimer <= uiDiff)
             {
@@ -1239,12 +1239,12 @@ public:
             if (m_uiSummonPetTimer <= uiDiff)
             {
                 //DoCast(SPELL_SUMMON_FELHUNTER);
-                if(Creature * pPet = me->FindNearestCreature(35465, 200.0f))
+                if (Creature * pPet = me->FindNearestCreature(35465, 200.0f))
                 {
                 m_uiSummonPetTimer = urand(15*IN_MILLISECONDS, 30*IN_MILLISECONDS);
                     return;
                 }
-                if(Creature * pPet = me->SummonCreature(35465, me->GetPositionX() + 3.0f, me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN, 1000))
+                if (Creature * pPet = me->SummonCreature(35465, me->GetPositionX() + 3.0f, me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN, 1000))
                     me->SetMinionGUID(pPet->GetGUID());
                 m_uiSummonPetTimer = urand(15*IN_MILLISECONDS, 30*IN_MILLISECONDS);
             } else m_uiSummonPetTimer -= uiDiff;
@@ -1343,20 +1343,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiCounterspellTimer <= uiDiff)
             {
@@ -1478,9 +1478,9 @@ public:
             m_uiSummonPetTimer = urand(15*IN_MILLISECONDS, 30*IN_MILLISECONDS);
             //DoCast(SPELL_CALL_PET);
             trinket_timer = urand(5000, 20000);
-            if(Creature * pPet = me->FindNearestCreature(35610, 200.0f))
+            if (Creature * pPet = me->FindNearestCreature(35610, 200.0f))
                 pPet->DespawnOrUnsummon();
-            if(Creature * pPet = me->SummonCreature(35610, me->GetPositionX() + 3.0f, me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN, 1000))
+            if (Creature * pPet = me->SummonCreature(35610, me->GetPositionX() + 3.0f, me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN, 1000))
                 me->SetMinionGUID(pPet->GetGUID());
         }
 
@@ -1489,20 +1489,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiDisengageTimer <= uiDiff)
             {
@@ -1540,12 +1540,12 @@ public:
             if (m_uiSummonPetTimer <= uiDiff)
             {
                 //DoCast(SPELL_CALL_PET);
-                if(Creature * pPet = me->FindNearestCreature(35610, 200.0f))
+                if (Creature * pPet = me->FindNearestCreature(35610, 200.0f))
                 {
                 m_uiSummonPetTimer = urand(15*IN_MILLISECONDS, 30*IN_MILLISECONDS);
                     return;
                 }
-                if(Creature * pPet = me->SummonCreature(35610, me->GetPositionX() + 3.0f, me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN, 1000))
+                if (Creature * pPet = me->SummonCreature(35610, me->GetPositionX() + 3.0f, me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN, 1000))
                     me->SetMinionGUID(pPet->GetGUID());
                 m_uiSummonPetTimer = urand(15*IN_MILLISECONDS, 30*IN_MILLISECONDS);
             } else m_uiSummonPetTimer -= uiDiff;
@@ -1561,10 +1561,10 @@ public:
                 switch (urand(0, 3))
                 {
                     case 0: case 1:
-                        DoCastVictim(RAID_MODE(SPELL_SHOOT_10_N, SPELL_SHOOT_25_N, SPELL_SHOOT_10_H ,SPELL_SHOOT_25_H));
+                        DoCastVictim(RAID_MODE(SPELL_SHOOT_10_N, SPELL_SHOOT_25_N, SPELL_SHOOT_10_H , SPELL_SHOOT_25_H));
                         break;
                     case 2:
-                        DoCastVictim(RAID_MODE(SPELL_EXPLOSIVE_SHOT_10_N, SPELL_EXPLOSIVE_SHOT_25_N, SPELL_EXPLOSIVE_SHOT_10_H ,SPELL_EXPLOSIVE_SHOT_25_H));
+                        DoCastVictim(RAID_MODE(SPELL_EXPLOSIVE_SHOT_10_N, SPELL_EXPLOSIVE_SHOT_25_N, SPELL_EXPLOSIVE_SHOT_10_H , SPELL_EXPLOSIVE_SHOT_25_H));
                         break;
                     case 3:
                         DoCastVictim(RAID_MODE(SPELL_AIMED_SHOT_10_N, SPELL_AIMED_SHOT_25_N, SPELL_AIMED_SHOT_10_H, SPELL_AIMED_SHOT_25_H));
@@ -1643,20 +1643,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiBarkskinTimer <= uiDiff)
             {
@@ -1778,20 +1778,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiBladestormTimer <= uiDiff)
             {
@@ -1917,20 +1917,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiIceboundFortitudeTimer <= uiDiff)
             {
@@ -2042,20 +2042,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiFanOfKnivesTimer <= uiDiff)
             {
@@ -2191,20 +2191,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiHeroismOrBloodlustTimer <= uiDiff)
             {
@@ -2212,14 +2212,14 @@ public:
                 {
                     if (!me->HasAura(AURA_EXHAUSTION))
                         DoCastAOE(SPELL_HEROISM);
-                    if(!me->HasAura(AURA_EXHAUSTION))
+                    if (!me->HasAura(AURA_EXHAUSTION))
                         DoCastAOE(AURA_EXHAUSTION);
                 }
                 else
                 {
                     if (!me->HasAura(AURA_SATED))
                         DoCastAOE(SPELL_BLOODLUST);
-                    if(!me->HasAura(AURA_SATED))
+                    if (!me->HasAura(AURA_SATED))
                         DoCastAOE(AURA_SATED);
                 }
                 m_uiHeroismOrBloodlustTimer = urand(25*IN_MILLISECONDS, 60*IN_MILLISECONDS);
@@ -2323,20 +2323,20 @@ public:
             if (!UpdateVictim()) return;
 
                 if (IsHeroic())
-			{
-		if(trinket_timer <= uiDiff)
-		{
-			if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
-			{
-			    RemoveCC();
-				trinket_timer = 120000;
-			}
-			else
-			{
-				trinket_timer= 5000;
-			}
-		} else trinket_timer -=uiDiff;
-			}
+            {
+        if (trinket_timer <= uiDiff)
+        {
+            if (me->HasAuraType(SPELL_AURA_MOD_STUN) || me->HasAuraType(SPELL_AURA_MOD_FEAR) || me->HasAuraType(SPELL_AURA_MOD_CHARM) || me->HasAuraType(SPELL_AURA_MOD_ROOT) || me->HasAuraType(SPELL_AURA_MOD_CONFUSE))
+            {
+                RemoveCC();
+                trinket_timer = 120000;
+            }
+            else
+            {
+                trinket_timer= 5000;
+            }
+        } else trinket_timer -=uiDiff;
+            }
 
             if (m_uiRepeteanceTimer <= uiDiff)
             {

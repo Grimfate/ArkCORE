@@ -144,7 +144,7 @@ public:
         {
             events.Reset();
                 events.SetPhase(PHASE_NONE);
-			me->SetReactState(REACT_PASSIVE);
+            me->SetReactState(REACT_PASSIVE);
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
                 instance->SetBossState(DATA_TYRANNUS, NOT_STARTED);
         }
@@ -180,19 +180,19 @@ public:
             void KilledUnit(Unit* victim)
             {
                 if (victim->GetTypeId() == TYPEID_PLAYER)
-            DoScriptText(RAND(SAY_SLAY_1,SAY_SLAY_2), me);
+            DoScriptText(RAND(SAY_SLAY_1, SAY_SLAY_2), me);
         }
 
         void JustDied(Unit* /*killer*/)
         {
             uint64 temp;
-            float x,y,z,o;
-            me->GetPosition(x,y,z,o);
+            float x, y, z, o;
+            me->GetPosition(x, y, z, o);
             if (instance->GetData(DATA_TEAM_IN_INSTANCE) == ALLIANCE)
                 temp=NPC_JAINA_PART2;
             else
                 temp=NPC_SYLVANAS_PART2;
-            me->SummonCreature(temp,x+30,y+30,z,o,TEMPSUMMON_CORPSE_DESPAWN);
+            me->SummonCreature(temp, x+30, y+30, z, o, TEMPSUMMON_CORPSE_DESPAWN);
             DoScriptText(SAY_DEATH, me);
                 instance->SetBossState(DATA_TYRANNUS, DONE);
 
@@ -232,12 +232,12 @@ public:
                     {
                         case EVENT_INTRO_1:
                             //DoScriptText(SAY_GORKUN_INTRO_2, pGorkunOrVictus);
-							break;
+                            break;
                         case EVENT_INTRO_2:
                             DoScriptText(SAY_TYRANNUS_INTRO_3, me);
-							break;
+                            break;
                         case EVENT_INTRO_3:
-							me->ExitVehicle();
+                            me->ExitVehicle();
                             me->GetMotionMaster()->MovePoint(0, miscPos);
                             break;
                         case EVENT_COMBAT_START:
@@ -247,18 +247,18 @@ public:
                             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
                             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_OOC_NOT_ATTACKABLE);
                             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
-							me->SetReactState(REACT_AGGRESSIVE);
+                            me->SetReactState(REACT_AGGRESSIVE);
                             DoCast(me, SPELL_FULL_HEAL);
                             DoZoneInCombat();
                             events.ScheduleEvent(EVENT_OVERLORD_BRAND, urand(5000, 7000));
                             events.ScheduleEvent(EVENT_FORCEFUL_SMASH, urand(14000, 16000));
                             events.ScheduleEvent(EVENT_MARK_OF_RIMEFANG, urand(25000, 27000));
-							break;
+                            break;
                         case EVENT_OVERLORD_BRAND:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
                                 DoCast(target, SPELL_OVERLORD_BRAND);
                             events.ScheduleEvent(EVENT_OVERLORD_BRAND, urand(11000, 12000));
-							break;
+                            break;
                     case EVENT_FORCEFUL_SMASH:
                             DoCastVictim(SPELL_FORCEFUL_SMASH);
                             events.ScheduleEvent(EVENT_UNHOLY_POWER, 1000);
@@ -309,7 +309,7 @@ public:
                 _events.SetPhase(PHASE_NONE);
                 _currentWaypoint = 0;
                 _hoarfrostTargetGUID = 0;
-			me->SetFlying(true);
+            me->SetFlying(true);
                 me->SetReactState(REACT_PASSIVE);
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
             }
@@ -350,7 +350,7 @@ public:
 
                 while (uint32 eventId = _events.ExecuteEvent())
             {
-                switch(eventId)
+                switch (eventId)
                 {
                         case EVENT_MOVE_NEXT:
                             if (_currentWaypoint >= 10 || _currentWaypoint == 0)

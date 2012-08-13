@@ -93,7 +93,7 @@ enum BossSpells
     SPELL_SPIKE_TELE        = 66170,
 };
 
-#define SPELL_PERMAFROST_HELPER RAID_MODE<uint32>(66193,67856,67855,67857)
+#define SPELL_PERMAFROST_HELPER RAID_MODE<uint32>(66193, 67856, 67855, 67857)
 
 enum SummonActions
 {
@@ -151,7 +151,7 @@ public:
         bool   m_bReachedPhase3;
         uint64 m_uiTargetGUID;
         uint8  m_uiScarabSummoned;
-		uint64 m_uiSpikeGUID;
+        uint64 m_uiSpikeGUID;
 
         void Reset()
         {
@@ -172,7 +172,7 @@ public:
             m_bIntro = true;
             m_bReachedPhase3 = false;
             m_uiTargetGUID = 0;
-            if(me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE))
+            if (me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE))
             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
             me->RemoveAllAuras();
             Summons.DespawnAll();
@@ -236,7 +236,7 @@ public:
         void JustSummoned(Creature* pSummoned)
         {
             Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 0, true);
-            if(!target)
+            if (!target)
                 return;
 
             switch (pSummoned->GetEntry())
@@ -248,7 +248,7 @@ public:
                     break;
                 case NPC_SPIKE:
                     pSummoned->CombatStart(target);
-					m_uiSpikeGUID = pSummoned->GetGUID();
+                    m_uiSpikeGUID = pSummoned->GetGUID();
                     DoScriptText(EMOTE_SPIKE, me, target);
                     break;
             }
@@ -268,7 +268,7 @@ public:
         void EnterCombat(Unit* /*who*/)
         {
             DoScriptText(SAY_AGGRO, me);
-            if(me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE))
+            if (me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE))
             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
             me->SetInCombatWithZone();
             if (m_pInstance)
@@ -370,7 +370,7 @@ public:
                 case 3:
                     m_uiStage = 0;
                     DoCast(SPELL_SPIKE_TELE);
-					if (Creature* pSpike = Unit::GetCreature(*me, m_uiSpikeGUID))
+                    if (Creature* pSpike = Unit::GetCreature(*me, m_uiSpikeGUID))
                         me->NearTeleportTo(pSpike->GetPositionX(), pSpike->GetPositionY(), pSpike->GetPositionZ(), pSpike->GetOrientation());
                     Summons.DespawnEntry(NPC_SPIKE);
                     me->RemoveAurasDueToSpell(SPELL_SUBMERGE_ANUBARAK);
@@ -697,7 +697,7 @@ public:
                 DoZoneInCombat();
                 if (target = SelectTarget(SELECT_TARGET_RANDOM))
                 {
-                    DoCast(target,SPELL_MARK);
+                    DoCast(target, SPELL_MARK);
                     me->TauntApply(target);
                     m_uiTargetGUID = target->GetGUID();
                 }

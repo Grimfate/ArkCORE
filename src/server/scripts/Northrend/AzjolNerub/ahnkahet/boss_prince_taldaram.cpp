@@ -237,7 +237,7 @@ public:
                             //He only vanishes if there are 3 or more alive players
                             if (target_list.size() > 2)
                             {
-                                DoScriptText(RAND(SAY_VANISH_1,SAY_VANISH_2), me);
+                                DoScriptText(RAND(SAY_VANISH_1, SAY_VANISH_2), me);
                                 //DoCast(me, SPELL_VANISH);                             // causes health reset issue?
                                 me->SetVisible(false);
                                 Phase = JUST_VANISHED;
@@ -407,7 +407,7 @@ public:
         if (pPrinceTaldaram && pPrinceTaldaram->isAlive())
         {
             // maybe these are hacks :(
-            pGO->SetFlag(GAMEOBJECT_FLAGS, GO_FLAG_UNK1);
+            pGO->SetFlag(GAMEOBJECT_FLAGS, GO_FLAG_NOT_SELECTABLE);
             pGO->SetGoState(GO_STATE_ACTIVE);
 
             switch (pGO->GetEntry())
